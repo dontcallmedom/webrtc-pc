@@ -183,10 +183,8 @@ var respecConfig = {
            var dc = document.querySelectorAll("[href^='#dom-peerconnection-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               if (el.getAttribute("href").split("-").length === 3) {
-                   el.setAttribute("for", "RTCPeerConnection");
-                   el.removeAttribute("href");
-               }
+               el.setAttribute("for", "RTCPeerConnection");
+               el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-icetransport-']");
            for (var i = 0 ; i < dc.length; i++) {

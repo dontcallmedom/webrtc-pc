@@ -168,10 +168,60 @@ var respecConfig = {
                el.setAttribute("for", "RTCDataChannel");
                el.removeAttribute("href");
            }
+           var dc = document.querySelectorAll("[href^='#dom-datachannelevent-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCDataChannelEvent");
+               el.removeAttribute("href");
+           }
            var dc = document.querySelectorAll("[href^='#dom-RTCDTMFSender-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
                el.setAttribute("for", "RTCDTMFSender");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#dom-peerconnection-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               if (el.getAttribute("href").split("-").length === 3) {
+                   el.setAttribute("for", "RTCPeerConnection");
+                   el.removeAttribute("href");
+               }
+           }
+           var dc = document.querySelectorAll("[href^='#dom-icetransport-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCIceTransport");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#dom-dtlstransport-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCDTLSTransport");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#dom-rtcstats-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCStats");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#dom-rtpsender-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCRtpSender");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#dom-trackevent-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCTrackEvent");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#dom-tonechangeevent-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCDTMFToneChangeEvent");
                el.removeAttribute("href");
            }
        }

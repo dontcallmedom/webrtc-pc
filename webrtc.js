@@ -159,5 +159,21 @@ var respecConfig = {
             "title": "Javascript Session Establishment Protocol",
             "date": "18 October 2015"
         }
-    }
+    },
+   postProcess: [
+       function() {
+           var dc = document.querySelectorAll("[href^='#dom-datachannel-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCDataChannel");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#dom-RTCDTMFSender-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("for", "RTCDTMFSender");
+               el.removeAttribute("href");
+           }
+       }
+   ]
 };

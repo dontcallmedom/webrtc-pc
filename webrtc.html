@@ -767,9 +767,9 @@
                       <!-- A) transition stable to haveLocalOffer -->
                       <li>
                         <p>If <var>description</var> is of type "offer",
-                        set <var>connection</var>'s <code><a href=
+                        set <code><var>connection</var>.<a href=
                         "#dom-peerconnection-pendinglocaldesc">pendingLocalDescription</a></code>
-                        attribute to <var>description</var> and <a>signaling state</a>
+                        to <var>description</var> and <a>signaling state</a>
                         to <code>have-local-offer</code>.</p>
                       </li>
 
@@ -796,7 +796,7 @@
                       <li>
                         <p>If <var>description</var> is
                         of type "rollback", then this is a rollback. Set
-                        <var>connection</var>'s <code><a href=
+                        <code><var>connection</var>.<a href=
                         "#dom-peerconnection-pendinglocaldesc">pendingLocalDescription</a></code>
                         to null and <a>signaling state</a>
                         to <code>stable</code>.</p>
@@ -805,8 +805,8 @@
                       <!-- G) transition haveRemoteOffer to haveLocalProvAnswer -->
                       <li>
                         <p>If <var>description</var> is
-                        of type "pranswer", then set <var>connection</var>'s
-                        <code><a href=
+                        of type "pranswer", then set <code><var>connection</var>.
+                        <a href=
                         "#dom-peerconnection-pendinglocaldesc">pendingLocalDescription</a></code>
                         to <var>description</var> and <a>signaling state</a>
                         to <code>have-local-pranswer</code>.</p>
@@ -823,7 +823,7 @@
                       <li>
                         <p>If <var>description</var> is
                         of type "offer",
-                        set <var>connection</var>'s <code><a href=
+                        set <code><var>connection</var>.<a href=
                         "#dom-peerconnection-pendingremotedesc">pendingRemoteDescription</a></code>
                         attribute to <var>description</var> and <a>signaling state</a>
                         to <code>have-remote-offer</code>.</p>
@@ -852,7 +852,7 @@
                       <li>
                         <p>If <var>description</var> is
                         of type "rollback", then this is a rollback. Set
-                        <var>connection</var>'s <code><a href=
+                        <code><var>connection</var>.<a href=
                         "#dom-peerconnection-pendingremotedesc">pendingRemoteDescription</a></code>
                         to null and <a>signaling state</a>
                         to <code>stable</code>.</p>
@@ -861,8 +861,7 @@
                       <!-- H) transition haveRemoteOffer to haveLocalProvAnswer -->
                       <li>
                         <p>If <var>description</var> is
-                        of type "pranswer", then set <var>connection</var>'s
-                        <code><a href=
+                        of type "pranswer", then set <code><var>connection</var>.<a href=
                         "#dom-peerconnection-pendingremotedesc">pendingRemoteDescription</a></code>
                         to <var>description</var> and <a>signaling state</a>
                         to <code>have-remote-pranswer</code>.</p>

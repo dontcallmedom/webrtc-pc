@@ -405,14 +405,14 @@
             <p>When the value of this dictionary member is true, the generated
             description will have ICE credentials that are different from the
             current credentials (as visible in the
-            <code><a link-for="RTCPeerConnection">localDescription</a></code> attribute's SDP). Applying the
+            <code><a data-link-for="RTCPeerConnection">localDescription</a></code> attribute's SDP). Applying the
             generated description will restart ICE.</p>
 
             <p>When the value of this dictionary member is false, and the
-            <code><a link-for="RTCPeerConnection">localDescription</a></code> attribute has valid ICE
+            <code><a data-link-for="RTCPeerConnection">localDescription</a></code> attribute has valid ICE
             credentials, the generated description will have the same ICE
             credentials as the current value from the
-            <code><a link-for="RTCPeerConnection">localDescription</a></code> attribute.</p>
+            <code><a data-link-for="RTCPeerConnection">localDescription</a></code> attribute.</p>
           </dd>
         </dl>
 
@@ -622,7 +622,7 @@
                 <p>A new candidate is available.</p>
 
                 <p>Add the candidate to <var>connection</var>'s
-                <code><a link-for="RTCPeerConnection">localDescription</a></code> and create a
+                <code><a data-link-for="RTCPeerConnection">localDescription</a></code> and create a
                 <code><a>RTCIceCandidate</a></code> instance to represent the
                 candidate. Let <var>newCandidate</var> be that object.</p>
               </li>

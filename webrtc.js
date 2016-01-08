@@ -162,64 +162,70 @@ var respecConfig = {
     },
    postProcess: [
        function() {
+           /* waiting for https://github.com/w3c/respec/pull/547 to land
+           var dc = document.querySelectorAll("code[id]");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.removeAttribute("id");
+           }*/
            var dc = document.querySelectorAll("[href^='#dom-datachannel-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCDataChannel");
+               el.setAttribute("data-for", "RTCDataChannel");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-datachannelevent-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCDataChannelEvent");
+               el.setAttribute("data-for", "RTCDataChannelEvent");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-RTCDTMFSender-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCDTMFSender");
+               el.setAttribute("data-for", "RTCDTMFSender");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-peerconnection-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCPeerConnection");
+               el.setAttribute("data-for", "RTCPeerConnection");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-icetransport-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCIceTransport");
+               el.setAttribute("data-for", "RTCIceTransport");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-dtlstransport-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCDTLSTransport");
+               el.setAttribute("data-for", "RTCDTLSTransport");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-rtcstats-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCStats");
+               el.setAttribute("data-for", "RTCStats");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-rtpsender-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCRtpSender");
+               el.setAttribute("data-for", "RTCRtpSender");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-trackevent-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCTrackEvent");
+               el.setAttribute("data-for", "RTCTrackEvent");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-tonechangeevent-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
-               el.setAttribute("for", "RTCDTMFToneChangeEvent");
+               el.setAttribute("data-for", "RTCDTMFToneChangeEvent");
                el.removeAttribute("href");
            }
        }

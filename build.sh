@@ -1,0 +1,1 @@
+phantomjs --ignore-ssl-errors=true --ssl-protocol=tlsv1 ../respec/tools/respec2html.js -e -w webrtc.html|sed -e "s/<script/<script class='remove'/"|sed -e "s/respec-webidlconvert.js/respec-w3c-upd-common.js/"|sed -e "s/webrtc-convert.js/webrtc.js/" > webrtc-contiguous.html

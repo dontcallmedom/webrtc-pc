@@ -750,8 +750,8 @@
                   <li>
                     <p>If <var>description</var> is set as a local description, and
                     its content matches the state of all tracks and data channels,
-                    <a href="#clearing-negotiation-needed">as defined below</a>,
-                    clear the negotiation-needed flag.
+                    as defined below,
+                    <a>clear the negotiation-needed flag</a>.
                     </p>
 
                     <p class="issue">NOTE: The principles of pending and current SDP
@@ -947,7 +947,7 @@
         <p>The <code><a>RTCPeerConnection</a></code> interface presented in this
         section is extended by several partial
         interfaces throughout this specification. Notably, the <a href=
-        "#rtcpeerconnection-interface-extensions">RTP Media section</a>, that
+        "#rtcpeerconnection-interface-extensions">RTP Media API</a> section, that
         adds the APIs to send and receive <code><a>MediaStreamTrack</a></code>
         objects.</p>
 
@@ -1454,7 +1454,7 @@
               </li>
             </ol>
 
-            <p>To <dfn id="set-pc-configuration">set a configuration</dfn>, run
+            <p>To <dfn data-lt="set the configuration" id="set-pc-configuration">set a configuration</dfn>, run
             the following steps:</p>
 
             <ol>
@@ -2317,7 +2317,7 @@
       </section>
       <section>
         <h4>Clearing Negotiation-Needed</h4>
-        <p>The negotiation-needed flag is cleared when
+        <p>The <dfn data-lt="clear the negotiation-needed flag">negotiation-needed flag is cleared</dfn> when
           <code>setLocalDescription</code> is
           called (either for an offer or answer), and the supplied description
           matches the state of the tracks/datachannels that currenly exist on the
@@ -2876,7 +2876,7 @@
   <section>
       <h2>RTP Media API</h2>
 
-      <p>The RTP media API lets a web application send and receive <code>MediaStreamTrack</code>s
+      <p>The <dfn>RTP media API</dfn> lets a web application send and receive <code>MediaStreamTrack</code>s
       over a peer-to-peer connection. Tracks, when added to a <code>RTCPeerConnection</code>, result in
       signaling; when this signaling is forwarded to a remote peer, it causes
       corresponding tracks to be created on the remote side.</p>
@@ -2896,7 +2896,7 @@
 
       <p>A <code><a>RTCPeerConnection</a></code> object contains a
       <dfn id="senders-set">set of <code>RTCRtpSender</code>s</dfn>, representing tracks to
-      be sent, and a <dfn id="receivers-set">set of <code>RTCRtpReceiver</code>s</dfn>,
+      be sent, and a <dfn data-lt="set of receivers" id="receivers-set">set of <code>RTCRtpReceiver</code>s</dfn>,
       representing tracks that are to be received on this
       <code><a>RTCPeerConnection</a></code> object, and
       a <dfn id="transceivers-set">set
@@ -4544,7 +4544,7 @@ sender.setParameters(params)
       "#widl-RTCDataChannelInit-id">id</a></code>s.</p>
 
       <p>Each <code><a>RTCDataChannel</a></code> has an associated
-      <dfn>underlying data transport</dfn> that is used to transport actual
+      <dfn data-lt="data transport">underlying data transport</dfn> that is used to transport actual
       data to the other peer. The transport properties of the <a>underlying
       data transport</a>, such as in order delivery settings and reliability
       mode, are configured by the peer as the channel is created. The
@@ -4574,7 +4574,7 @@ sender.setParameters(params)
       "#announce-datachannel-open">announce the <code>RTCDataChannel</code> as
       open</a>.</p>
 
-      <p>When the user agent is to <dfn id="announce-datachannel-open">announce
+      <p>When the user agent is to <dfn data-lt="announce the rtcdatachannel as open" id="announce-datachannel-open">announce
       a <code>RTCDataChannel</code> as open</dfn>, the user agent MUST queue a
       task to run the following steps:</p>
 
@@ -4669,7 +4669,7 @@ sender.setParameters(params)
       <ol>
         <li>
           <p>Let <var>channel</var> be the <code><a>RTCDataChannel</a></code>
-          object whose <a href="#dfn-underlying-data-transport">transport</a>
+          object whose <a data-lt="data transport" href="#dfn-underlying-data-transport">transport</a>
           was closed.</p>
 
           <div class="issue">
@@ -4685,7 +4685,7 @@ sender.setParameters(params)
         </li>
 
         <li>
-          <p>If the <a href="#dfn-underlying-data-transport">transport</a> was
+          <p>If the <a data-lt="data transport" href="#dfn-underlying-data-transport">transport</a> was
           closed <dfn id="data-transport-closed-error">with an error</dfn>,
           fire an NetworkError event at <var>channel</var>.</p>
         </li>
@@ -5123,7 +5123,7 @@ sender.setParameters(params)
         <dt>closing</dt>
 
         <dd>
-          <p>The <code><a href=
+          <p>The <code><a data-lt="closing procedure" href=
           "#data-transport-closing-procedure">procedure</a></code> to close
           down the <a>underlying data transport</a> has started.</p>
         </dd>
@@ -6492,14 +6492,14 @@ function processStats() {
       mute signal has been received, it MUST <a href=
       "#update-track-muted">update the muted state</a> of the corresponding
       <code><a>MediaStreamTrack</a></code> with the value <code>true</code>.
-      When media data is available again, the <a href=
+      When media data is available again, the <a data-lt="update the muted state" href=
       "#update-track-muted">muted state MUST be updated</a> with the value
       <code>false</code>.</p>
 
       <p class="issue">The mute signal mentioned in the previous paragraph
       is yet to be defined.</p>
 
-      <p>The procedure <dfn id="update-track-muted">update a track's muted
+      <p>The procedure <dfn data-lt="update the muted state" id="update-track-muted">update a track's muted
       state</dfn> is specified in [[!GETUSERMEDIA]].</p>
 
       <p>When a track comes

@@ -270,6 +270,14 @@ var respecConfig = {
                el.setAttribute("data-for", "RTCDTMFToneChangeEvent");
                el.removeAttribute("href");
            }
+           var dc = document.querySelectorAll("[href^='#']");
+           var ignoreSectionIds = ['session-negotiation-model', 'isolated-pc'];
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               if (!el.getAttribute("href").match(/^#sec\./) && ignoreSectionIds.indexOf(el.getAttribute("href").split('#')[1]) === -1) {
+                   el.removeAttribute("href");
+               }
+           }
        }
    ]
 };

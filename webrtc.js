@@ -162,16 +162,40 @@ var respecConfig = {
     },
    postProcess: [
        function() {
-           /* waiting for https://github.com/w3c/respec/pull/547 to land
+           /* waiting for https://github.com/w3c/respec/pull/547 to land */
            var dc = document.querySelectorAll("code[id]");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
                el.removeAttribute("id");
-           }*/
+           }
            var dc = document.querySelectorAll("[href^='#dom-datachannel-']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
                el.setAttribute("data-for", "RTCDataChannel");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#widl-RTCDataChannelInit-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("data-for", "RTCDataChannelInit");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#widl-RTCCertificate-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("data-for", "RTCCertificate");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#widl-RTCIdentityProvider-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("data-for", "RTCIdentityProvider");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#widl-RTCSessionDescription-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("data-for", "RTCSessionDescription");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-datachannelevent-']");
@@ -186,7 +210,7 @@ var respecConfig = {
                el.setAttribute("data-for", "RTCDTMFSender");
                el.removeAttribute("href");
            }
-           var dc = document.querySelectorAll("[href^='#dom-peerconnection-']");
+           var dc = document.querySelectorAll("[href^='#dom-peerconnection-'],[href^='#widl-RTCPeerConnection']");
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
                el.setAttribute("data-for", "RTCPeerConnection");
@@ -196,6 +220,18 @@ var respecConfig = {
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
                el.setAttribute("data-for", "RTCIceTransport");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#widl-RTCIceCandidate-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("data-for", "RTCIceCandidate");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#widl-RTCPeerConnectionIceEvent-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("data-for", "RTCPeerConnectionIceEvent");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-dtlstransport-']");
@@ -220,6 +256,12 @@ var respecConfig = {
            for (var i = 0 ; i < dc.length; i++) {
                var el = dc[i];
                el.setAttribute("data-for", "RTCTrackEvent");
+               el.removeAttribute("href");
+           }
+           var dc = document.querySelectorAll("[href^='#widl-RTCConfiguration-']");
+           for (var i = 0 ; i < dc.length; i++) {
+               var el = dc[i];
+               el.setAttribute("data-for", "RTCConfiguration");
                el.removeAttribute("href");
            }
            var dc = document.querySelectorAll("[href^='#dom-tonechangeevent-']");

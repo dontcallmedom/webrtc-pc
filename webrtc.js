@@ -92,6 +92,64 @@ var respecConfig = {
     }
   ],
   useExperimentalStyles: true,
+  preProcess: [
+      function linkToJsep() {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'jsep-mapping/map.json');
+          xhr.onload = function(e) {
+              var data = JSON.parse(this.responseText);
+              if (respecConfig.localBiblio.JSEP.date !== data.metadata.date) {
+                  respecEvents.pub("warn", "Date of JSEP draft in localBiblio (" + respecConfig.localBiblio.date + ") does not match date of JSEP draft used in map.json (" + data.metadata.date + ").");
+              }
+              // Replace all
+              //    <span data-jsep="foo">[[!JSEP]]</a>
+              // with
+              //    <span>[[!JSEP]] (<a href="...#X.Y">section X.Y.</a>)
+              // based on mapping maintained in jsep-mapping/map.json
+              Array.prototype.forEach.call(
+                  document.querySelectorAll("*[data-jsep]"),
+                  function (el) {
+                      var jsepAnchors = el.dataset.jsep.split(" ");
+                      var jsepSections = jsepAnchors.map(function (s) { return data.sections["sec." + s];});
+                      if (jsepSections.indexOf(undefined) !== -1) {
+                          respecEvents.pub("warn", "Reference to inexistent JSEP section in '" + el.dataset.jsep + "': unrecognized anchor #" + jsepSections.indexOf(undefined) + " 'sec." + jsepAnchors[jsepSections.indexOf(undefined)] + "'.");
+                          return;
+                      }
+                      el.removeAttribute("data-jsep");
+                      el.appendChild(document.createTextNode(" ("));
+                      jsepSections.forEach(function (s, i) {
+                          var sectionLink = document.createElement("a");
+                          sectionLink.href = "https://tools.ietf.org/html/draft-ietf-rtcweb-jsep-" + data.metadata.version + "#section-" +  s.slice(0, s.length - 1);
+                          sectionLink.textContent = "section " + s;
+                          if (i > 0) {
+                              if (i == jsepSections.length - 1) {
+                                  el.appendChild(document.createTextNode(" and "));
+                              } else {
+                                  el.appendChild(document.createTextNode(", "));
+                              }
+                          }
+                          el.appendChild(sectionLink);
+                      });
+                      el.appendChild(document.createTextNode(")"));
+
+
+                  });
+          };
+          xhr.send();
+      }
+  ],
+    afterEnd: function markFingerprinting () {
+        Array.prototype.forEach.call(
+            document.querySelectorAll(".fingerprint"),
+            function (el) {
+                var img = new Image();
+                img.src = "images/fingerprint.png";
+                img.alt = "(This is a fingerprinting vector.)";
+                img.width = 15;
+                img.height = 21;
+                el.appendChild(img);
+            });
+    },
     localBiblio: {
         "JSEP": {
             "authors":["Justin Uberti","Cullen Jennings","Eric Rescorla"],
@@ -101,125 +159,5 @@ var respecConfig = {
             "title": "Javascript Session Establishment Protocol",
             "date": "18 October 2015"
         }
-    },
-   postProcess: [
-       function() {
-           /* waiting for https://github.com/w3c/respec/pull/547 to land */
-           var dc = document.querySelectorAll("code[id]");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.removeAttribute("id");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-datachannel-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCDataChannel");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#widl-RTCDataChannelInit-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCDataChannelInit");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#widl-RTCCertificate-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCCertificate");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#widl-RTCIdentityProvider-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCIdentityProvider");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#widl-RTCSessionDescription-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCSessionDescription");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-datachannelevent-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCDataChannelEvent");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-RTCDTMFSender-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCDTMFSender");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-peerconnection-'],[href^='#widl-RTCPeerConnection']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCPeerConnection");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-icetransport-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCIceTransport");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#widl-RTCIceCandidate-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCIceCandidate");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#widl-RTCPeerConnectionIceEvent-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCPeerConnectionIceEvent");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-dtlstransport-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCDTLSTransport");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-rtcstats-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCStats");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-rtpsender-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCRtpSender");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-trackevent-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCTrackEvent");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#widl-RTCConfiguration-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCConfiguration");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#dom-tonechangeevent-']");
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               el.setAttribute("data-for", "RTCDTMFToneChangeEvent");
-               el.removeAttribute("href");
-           }
-           var dc = document.querySelectorAll("[href^='#']");
-           var ignoreSectionIds = ['session-negotiation-model', 'isolated-pc'];
-           for (var i = 0 ; i < dc.length; i++) {
-               var el = dc[i];
-               if (!el.getAttribute("href").match(/^#sec\./) && ignoreSectionIds.indexOf(el.getAttribute("href").split('#')[1]) === -1) {
-                   el.removeAttribute("href");
-               }
-           }
-       }
-   ]
+    }
 };
